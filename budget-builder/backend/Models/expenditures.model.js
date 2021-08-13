@@ -1,9 +1,10 @@
-const { Schema, models } = require("mongoose");
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const expenditureSchema = new Schema({
     expenditure : {type: String, required: true, trim: true},
     description: {type: String, required: true, trim: true},
-    amount:{type: Int, required: true, trim: true},
+    amount:{type: Number, required: true, trim: true},
 },{
     timestamps: true,
 })
