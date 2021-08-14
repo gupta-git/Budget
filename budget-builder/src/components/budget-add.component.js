@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 export default class addBudget extends Component {
 
 constructor(props){
@@ -37,12 +38,14 @@ onChangeAmount(e){
 onSubmit(e) {
     e.preventDefault();
     const addingBudget = {
-        buget: this.state.budget,
+        budget: this.state.budget,
         description: this.state.description,
         amount : this.state.amount
     }
 
     console.log(addingBudget);
+
+    axios.post('http://localhost:8000/budgets/add',addingBudget).then(res => console.log(res.data));
     //window.location = '/'
 }
 
@@ -52,23 +55,15 @@ render(){
           <h3>Add to the Budget</h3>
           <form onSubmit={this.onSubmit}>
             <div class="form-row">
-                <div class="form-group"> 
-                <label>Budget: </label>
-                <select ref="userInput"
-                    required
-                    class="form-control"
-                    value={this.state.budget}
-                    onChange={this.onChangeBudget}>
-                    {
-                        this.state.budgets.map(function(budget) {
-                        return <option 
-                            key={budget}
-                            value={budget}>{budget}
-                            </option>;
-                        })
-                    }
-                </select>
-                </div>
+            <div class="form-group"> 
+              <label>Budget: </label>
+              <input  type="text"
+                  required
+                  class="form-control"
+                  value={this.state.budget}
+                  onChange={this.onChangeBudget}
+                  />
+            </div>
             </div>
             <div class="form-group"> 
               <label>Description: </label>

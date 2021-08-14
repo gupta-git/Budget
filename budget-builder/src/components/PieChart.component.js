@@ -32,10 +32,10 @@ export default class PieChart extends Component {
                   'rgba(153, 102, 255, 1)',
                   'rgba(255, 159, 64, 1)',
                 ],
-                borderWidth: 1,
+                borderWidth: 5,
               },
               // {
-              //   label: 'Quantity',
+              //   label: 'Quantity', 
               //   data: [47, 52, 67, 58, 9, 50],
               //   backgroundColor: 'orange',
               //   borderColor: 'red',
