@@ -2,11 +2,17 @@ const router = require('express').Router();
 let Budget = require('../Models/budgets.model');
 
 router.route('/').get((req,res)=>{
+    console.log('hello');
+    console.log(Budget);
+
     Budget.find().then(budget => res.json(budget)).catch(err=>res.status(400));
 })
 
 router.route('/add').post((req,res)=>{
-
+    console.log('hello');
+    console.log(Budget);
+    console.log(req.body);
+    
     const budget  = req.body.budget;
     const description  = req.body.description;
     const amount = req.body.amount;
@@ -25,13 +31,18 @@ router.route('/:id').get((req, res) => {
       .catch(err => res.status(400).json('Error: ' + err));
     });
   
-router.route('/:id').delete((req, res) => {
-    Budget.findByIdAndDelete(req.params.id)
-        .then(() => res.json('Exercise deleted.'))
+router.route('/delete').delete((req, res) => {
+    console.log("testing")
+    console.log( req.body);
+    //console.log(req.body.budget);
+
+    Budget.deleteOne({budget: req.body.budget})
+        .then(() => res.json('budget deleted.'))
         .catch(err => res.status(400).json('Error: ' + err));
     });
 
 router.route('/update/:id').post((req, res) => {
+    
     Budget.findById(req.params.id)
         .then(updatingBudget => {
             updatingBudget.budget = req.body.budget;
